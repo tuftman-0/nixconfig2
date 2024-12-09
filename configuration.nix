@@ -453,6 +453,7 @@ in
     hypridle
     hyprlock
     hyprpicker
+    nwg-look # for selecting cursors and stuff
     # bibata-cursors
     waybar
     dunst
