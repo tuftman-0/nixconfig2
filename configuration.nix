@@ -18,18 +18,18 @@ let
   #   };
   # };
 
-  # configure-gtk = pkgs.writeTextFile {
-  #     name = "configure-gtk";
-  #     destination = "/bin/configure-gtk";
-  #     executable = true;
-  #     text = let
-  #       schema = pkgs.gsettings-desktop-schemas;
-  #       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-  #     in ''
-  #       gnome_schema=org.gnome.desktop.interface
-  #       gsettings set $gnome_schema gtk-theme 'Dracula'
-  #     '';
-  #   };
+  configure-gtk = pkgs.writeTextFile {
+      name = "configure-gtk";
+      destination = "/bin/configure-gtk";
+      executable = true;
+      text = let
+        schema = pkgs.gsettings-desktop-schemas;
+        datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+      in ''
+        gnome_schema=org.gnome.desktop.interface
+        gsettings set $gnome_schema gtk-theme 'Dracula'
+      '';
+    };
 
   myneovim = pkgs.neovim.overrideAttrs
       (old: {
@@ -39,6 +39,8 @@ let
           ":"
           (lib.makeBinPath [
             pkgs.ripgrep
+            pkgs.fd
+            pkgs.clang
             pkgs.gcc
             pkgs.nodejs
             pkgs.nil
@@ -48,7 +50,26 @@ let
             pkgs.stylua
             pkgs.deadnix
             pkgs.statix
+          ])
+        ];
+      });
+
+  myemacs = pkgs.emacs.overrideAttrs
+      (old: {
+        generatedWrapperArgs = old.generatedWrapperArgs or [ ] ++ [
+          "--prefix"
+          "PATH"
+          ":"
+          (lib.makeBinPath [
+            pkgs.coreutils
+            pkgs.ripgrep
             pkgs.fd
+            pkgs.clang
+            pkgs.nixd
+            pkgs.lua-language-server
+            pkgs.stylua
+            pkgs.deadnix
+            pkgs.statix
           ])
         ];
       });
@@ -176,6 +197,7 @@ in
     };
     # export is just for kakoune treesitter: export PATH=$HOME/.cargo/bin:$PATH
     promptInit=''
+      PATH=$HOME/.config/emacs/bin:$PATH
       function y() {
           local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
           yazi "$@" --cwd-file="$tmp"
@@ -236,7 +258,7 @@ in
   };
 
   environment.sessionVariables = rec {
-    NIXOS_OZONE_WL = "1";
+    NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
     XDG_CACHE_HOME  = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
     XDG_DATA_HOME   = "$HOME/.local/share";
@@ -342,6 +364,7 @@ in
 
     packages = with pkgs; [
       firefox
+      qutebrowser
       jetbrains.idea-community
       # discord
       discord-canary
@@ -377,6 +400,11 @@ in
     pyright
     helix
 
+    # fix dumb gsettings BS 
+    glib
+    dracula-theme
+    adwaita-icon-theme
+
     # # have decided to use plug.kak instead
     # (kakoune.override {
     #   plugins = with pkgs.kakounePlugins; [
@@ -389,9 +417,12 @@ in
     kakoune
     kak-lsp
     kak-tree-sitter
+    bc
 
     zed-editor
-    emacs #doom emacs needs: git, ripgrep; wants: fd, coreutils, clang
+    myemacs
+    # emacs #doom emacs needs: git, ripgrep; wants: fd, coreutils, clang
+    # coreutils already installed somehow
 
     wget
     curl
@@ -405,6 +436,8 @@ in
     atool
     unzip
     unrar
+
+    hyperfine
 
     lf # file manager
 
