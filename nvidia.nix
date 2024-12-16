@@ -1,17 +1,17 @@
 { config, lib, pkgs, ... }:
 {
 
-  # Enable OpenGL
-  hardware.opengl = {
+  # Enable OpenGL?
+  hardware.graphics = {
     enable = true;
   };
+
   #   driSupport = true;
   #   driSupport32Bit = true;
   #   extraPackages = with pkgs; [
   #     # trying to fix `WLR_RENDERER=vulkan sway`
   #     vulkan-validation-layers
   #   ];
-  # };
 
   services.xserver = {
     enable = true;
