@@ -61,13 +61,10 @@ let
           "PATH"
           ":"
           (lib.makeBinPath [
-            pkgs.coreutils
             pkgs.ripgrep
             pkgs.fd
             pkgs.clang
             pkgs.nixd
-            pkgs.lua-language-server
-            pkgs.stylua
             pkgs.deadnix
             pkgs.statix
           ])
@@ -196,18 +193,17 @@ in
       vimdiff = "nvim -d";
     };
     # export is just for kakoune treesitter: export PATH=$HOME/.cargo/bin:$PATH
-    promptInit=''
-      PATH=$HOME/.config/emacs/bin:$PATH
-      function y() {
-          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-          yazi "$@" --cwd-file="$tmp"
-          if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-              builtin cd -- "$cwd"
-          fi
-          rm -f -- "$tmp"
-      } 
-    	eval "$(zoxide init zsh)"
-    '';
+    # promptInit=''
+    #   function y() {
+    #       local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    #       yazi "$@" --cwd-file="$tmp"
+    #       if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    #           builtin cd -- "$cwd"
+    #       fi
+    #       rm -f -- "$tmp"
+    #   } 
+    # 	eval "$(zoxide init zsh)"
+    # '';
 
     ohMyZsh = {
       enable = true;
@@ -420,8 +416,8 @@ in
     bc
 
     zed-editor
-    myemacs
-    # emacs #doom emacs needs: git, ripgrep; wants: fd, coreutils, clang
+    # myemacs
+    emacs #doom emacs needs: git, ripgrep; wants: fd, coreutils, clang
     # coreutils already installed somehow
 
     wget
@@ -430,12 +426,12 @@ in
     lazygit
     yazi
     fd # for yazi
-    dragon
     ranger # file manager
     # stuff for ranger
     atool
     unzip
     unrar
+    xdragon
 
     hyperfine
 
