@@ -385,6 +385,7 @@ in
     myneovim
 
     # (import /home/josh/.config/my-hello.nix)
+    yadm
 
     ripgrep
     nil
