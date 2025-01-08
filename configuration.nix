@@ -10,14 +10,6 @@
 # in
 
 let
-
-  # my-kak-tree-sitter = with pkgs; stdenv.mkDerivation rec {
-  #   name = "kak-tree-sitter";
-  #   src = fetchGit {
-  #     url = "https://git.sr.ht/~hadronized/kak-tree-sitter";
-  #   };
-  # };
-
   configure-gtk = pkgs.writeTextFile {
       name = "configure-gtk";
       destination = "/bin/configure-gtk";
@@ -94,6 +86,7 @@ in
   # stuff for OBS
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   boot.kernelModules = ["v4l2loopback"];
+  # boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
   security.polkit.enable = true;
   # hardware.opengl.enable = true;
   hardware.graphics.enable = true; # same but for new version
@@ -116,7 +109,7 @@ in
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-
+ 
   # Set your time zone.
   time.timeZone = "America/Toronto";
 
@@ -402,19 +395,12 @@ in
     dracula-theme
     adwaita-icon-theme
 
-    # # have decided to use plug.kak instead
-    # (kakoune.override {
-    #   plugins = with pkgs.kakounePlugins; [
-    #     fzf-kak
-    #     kakoune-lsp
-    #     smarttab-kak
-    #   ];
-    # })
-
     kakoune
     kak-lsp
     kak-tree-sitter
     bc
+    lsp-ai
+    ollama
 
     zed-editor
     # myemacs
@@ -430,18 +416,20 @@ in
     ranger # file manager
     # stuff for ranger
     atool
+    zip
     unzip
     unrar
     xdragon
 
     hyperfine
 
-    lf # file manager
+    # lf # file manager
 
     starship
     zoxide
     fzf # not sure if I need this
     alacritty # terminal
+    ueberzugpp
     wezterm
     kitty
     cmatrix # Take The Purple Pill
