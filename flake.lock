@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "flake-compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
+        "type": "github"
+      },
+      "original": {
+        "owner": "edolstra",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -53,6 +69,7 @@
     },
     "ghostty": {
       "inputs": {
+        "flake-compat": "flake-compat",
         "nixpkgs-stable": [
           "nixpkgs"
         ],
@@ -62,11 +79,11 @@
         "zig": "zig"
       },
       "locked": {
-        "lastModified": 1734381839,
-        "narHash": "sha256-s3IrXBkJQ8oM+CSzmh3k1lO2EPZ0CqkIgin6LZ07edc=",
+        "lastModified": 1735577779,
+        "narHash": "sha256-Ec7uyE/KjaGMjRpBMDz/QOOihDtN1evV6XnOkHSuS0w=",
         "ref": "refs/heads/main",
-        "rev": "56f285cbc2caba6993c9d94d352b8a39e9e21eb5",
-        "revCount": 8305,
+        "rev": "716848cb58473a4c67fed7adaf2b04179661381f",
+        "revCount": 8642,
         "type": "git",
         "url": "ssh://git@github.com/ghostty-org/ghostty"
       },
