@@ -21,6 +21,13 @@
     #   wayland = true;
     # };
   };
+
+  # ollama
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+
   # Load nvidia driver for Xorg and Wayland
   nixpkgs.config.nvidia.acceptLicense = true;
   hardware.nvidia = {
