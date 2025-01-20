@@ -431,8 +431,8 @@ in
     fzf # not sure if I need this
     alacritty # terminal
     ueberzugpp
+    ghostty
     wezterm
-    kitty
     cmatrix # Take The Purple Pill
     fuzzel # app launcher
     pavucontrol
