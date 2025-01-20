@@ -366,6 +366,7 @@ in
       protonvpn-gui
       qownnotes
       # mars-mips
+      prusa-slicer
     ];
   };
 
@@ -400,7 +401,7 @@ in
     kak-tree-sitter
     bc
     lsp-ai
-    ollama
+    # ollama
 
     zed-editor
     # myemacs
