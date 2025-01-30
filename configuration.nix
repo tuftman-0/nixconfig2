@@ -398,15 +398,16 @@ in
 
     kakoune
     kak-lsp
-    kak-tree-sitter
+    kak-tree-sitter-unwrapped
     bc
     lsp-ai
     # ollama
 
-    zed-editor
+    # zed-editor
     # myemacs
     emacs #doom emacs needs: git, ripgrep; wants: fd, coreutils, clang
     # coreutils already installed somehow
+    vis
 
     wget
     curl
