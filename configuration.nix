@@ -80,7 +80,8 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # get latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   # boot.loader.grub.useOSProber = true; # check if this works
 
   # stuff for OBS
@@ -129,7 +130,12 @@ in
   };
 
   # # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    excludePackages = [ pkgs.xterm ];
+  };
+  # WHY IS IT SO HARD TO SET A DEFAULT FUCKING TERMINAL
+  # xdg.mime.defaultApplications = { "application/pdf" = "firefox.desktop"; "image/png" = «thunk»; };
 
   # Enable the Budgie Desktop environment.
   # services.xserver.displayManager.lightdm.enable = true;
@@ -238,12 +244,13 @@ in
     configDir = "/home/josh/syncthing";   # Folder for Syncthing's settings and keys
   };
 
-
   environment.shells = with pkgs; [zsh];
   users.defaultUserShell = pkgs.zsh;
   environment.variables = {
     EDITOR = "kak";
     VISUAL = "kak";
+    # TERM = "alacritty";
+    # TERMINAL = "alacritty";
   };
 
   environment.sessionVariables = rec {
@@ -275,6 +282,7 @@ in
     ];
   };
 
+  virtualisation.waydroid.enable = true;
   # Enable CUPS to print documents.
   # services.printing.enable = true;
   services.printing = {
@@ -351,6 +359,7 @@ in
     extraGroups = ["networkmanager" "wheel" "audio" "video" "input"];
     shell = pkgs.zsh;
 
+
     packages = with pkgs; [
       firefox
       qutebrowser
@@ -367,6 +376,7 @@ in
       qownnotes
       # mars-mips
       prusa-slicer
+      # waydroid
     ];
   };
 
@@ -378,6 +388,7 @@ in
     # neovim
     myneovim
 
+    alsa-utils # for aplay
     # (import /home/josh/.config/my-hello.nix)
     yadm
 
