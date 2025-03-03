@@ -408,11 +408,13 @@ in
     adwaita-icon-theme
 
     kakoune
-    kak-lsp
+    # kak-lsp
     kak-tree-sitter-unwrapped
     bc
     lsp-ai
     # ollama
+
+    cargo
 
     # zed-editor
     # myemacs
