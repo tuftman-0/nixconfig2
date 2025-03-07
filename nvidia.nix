@@ -12,7 +12,7 @@
   #     # trying to fix `WLR_RENDERER=vulkan sway`
   #     vulkan-validation-layers
   #   ];
-
+  nixpkgs.config.cudaSupport = true;
   services.xserver = {
     enable = true;
     videoDrivers = ["nvidia"];
@@ -61,5 +61,7 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
+  # hardware.opengl = {
+  #   nvidia-vaapi-driver
+  # };
 }
-
