@@ -46,22 +46,7 @@ let
         ];
       });
 
-  myemacs = pkgs.emacs.overrideAttrs
-      (old: {
-        generatedWrapperArgs = old.generatedWrapperArgs or [ ] ++ [
-          "--prefix"
-          "PATH"
-          ":"
-          (lib.makeBinPath [
-            pkgs.ripgrep
-            pkgs.fd
-            pkgs.clang
-            pkgs.nixd
-            pkgs.deadnix
-            pkgs.statix
-          ])
-        ];
-      });
+
 in
 {
   # nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"]; # not sure if this is necessary (doesn't seem to work)
@@ -85,13 +70,22 @@ in
   # boot.loader.grub.useOSProber = true; # check if this works
 
   # stuff for OBS
-  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-  boot.kernelModules = ["v4l2loopback"];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+  boot.kernelModules = [
+    "v4l2loopback"
+    # "nvidia_uvm"
+]; # don't know if nvida uvm actually makes a difference
   # boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
   security.polkit.enable = true;
   # hardware.opengl.enable = true;
-  hardware.graphics.enable = true; # same but for new version
-
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      # nvidia-vaapi-driver # makes colors horrrible
+      # libvdpau-va-gl
+      # vaapiVdpau
+    ];
+  };
 
   networking.hostName = "bapanada"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -130,9 +124,12 @@ in
   };
 
   # # Enable the X11 windowing system.
+  # Configure keymap in X11
   services.xserver = {
     enable = true;
     excludePackages = [ pkgs.xterm ];
+    xkb.layout = "us";
+    xkb.variant = "";
   };
   # WHY IS IT SO HARD TO SET A DEFAULT FUCKING TERMINAL
   # xdg.mime.defaultApplications = { "application/pdf" = "firefox.desktop"; "image/png" = «thunk»; };
@@ -147,11 +144,6 @@ in
   #   enableContribAndExtras = true;
   # };
 
-  # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
 
   # Greeter
   services.greetd = {
@@ -222,9 +214,6 @@ in
   };
 
 
-  # programs.yazi = {
-  #   enable = true;
-  # };
 
 
   # programs.direnv = {
@@ -344,8 +333,8 @@ in
     ];
     fontconfig= {
       enable = true;
-      # antialias = true;
-      hinting.enable = true;
+      antialias = true;
+      # hinting.enable = true;
       hinting.autohint = true;
       # subpixel.rgba = true;
       subpixel.lcdfilter = "default";
@@ -363,7 +352,7 @@ in
     packages = with pkgs; [
       firefox
       qutebrowser
-      jetbrains.idea-community
+      # jetbrains.idea-community
       discord
       # discord-canary
       steam
@@ -444,7 +433,7 @@ in
     zoxide
     fzf # not sure if I need this
     alacritty # terminal
-    ueberzugpp
+    # ueberzugpp
     ghostty
     wezterm
     cmatrix # Take The Purple Pill
@@ -500,11 +489,14 @@ in
     cups-pdf-to-pdf # print to pdf utility?
 
     # obs-studio
+    ffmpeg-full
     (wrapOBS {
       plugins = with obs-studio-plugins; [
         wlrobs
-        obs-backgroundremoval
+        # obs-backgroundremoval
         obs-pipewire-audio-capture
+        obs-vaapi
+        # obs-nvenc
       ];
     })
   ];
