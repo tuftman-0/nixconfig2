@@ -65,8 +65,8 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # get latest kernel
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_6_12;
   # boot.loader.grub.useOSProber = true; # check if this works
 
   # stuff for OBS
@@ -134,7 +134,6 @@ in
   # WHY IS IT SO HARD TO SET A DEFAULT FUCKING TERMINAL
   # xdg.mime.defaultApplications = { "application/pdf" = "firefox.desktop"; "image/png" = «thunk»; };
 
-  # Enable the Budgie Desktop environment.
   # services.xserver.displayManager.lightdm.enable = true;
   # services.xserver.desktopManager.budgie.enable = true;
   # services.xserver.desktopManager.xfce.enable = true; # maybe enable to fix thunar issues and stuff
@@ -233,28 +232,35 @@ in
     configDir = "/home/josh/syncthing";   # Folder for Syncthing's settings and keys
   };
 
-  environment.shells = with pkgs; [zsh];
   users.defaultUserShell = pkgs.zsh;
-  environment.variables = {
-    EDITOR = "kak";
-    VISUAL = "kak";
-    # TERM = "alacritty";
-    # TERMINAL = "alacritty";
-  };
 
-  environment.sessionVariables = rec {
-    NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
-    XDG_CACHE_HOME  = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME   = "$HOME/.local/share";
-    XDG_STATE_HOME  = "$HOME/.local/state";
 
-    # Not officially in the specification
-    XDG_BIN_HOME    = "$HOME/.local/bin";
+  environment = {
+    shells = with pkgs; [zsh];
 
-    PATH = [
-      "${XDG_BIN_HOME}"
-    ];
+    variables = {
+      EDITOR = "kak";
+      VISUAL = "kak";
+      # TERM = "alacritty";
+      # TERMINAL = "alacritty";
+
+    };
+
+    sessionVariables = rec {
+      NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
+      XDG_CACHE_HOME  = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME   = "$HOME/.local/share";
+      XDG_STATE_HOME  = "$HOME/.local/state";
+
+      # Not officially in the specification
+      XDG_BIN_HOME    = "$HOME/.local/bin";
+
+      PATH = [
+        "${XDG_BIN_HOME}"
+      ];
+    };
+
   };
 
   xdg.portal = {
@@ -334,10 +340,10 @@ in
     fontconfig= {
       enable = true;
       antialias = true;
-      # hinting.enable = true;
-      hinting.autohint = true;
+      hinting.enable = true;
+      # hinting.autohint = true;
       # subpixel.rgba = true;
-      subpixel.lcdfilter = "default";
+      subpixel.lcdfilter = "none";
     };
   };
 
@@ -353,6 +359,7 @@ in
       firefox
       qutebrowser
       # jetbrains.idea-community
+      android-studio
       discord
       # discord-canary
       steam
@@ -388,7 +395,7 @@ in
     alejandra # nix formatter
     lua-language-server
     # zls
-    pyright
+    # pyright
     helix
 
     # fix dumb gsettings BS 
@@ -400,6 +407,7 @@ in
     # kak-lsp
     kak-tree-sitter-unwrapped
     bc
+    jq
     lsp-ai
     # ollama
 
