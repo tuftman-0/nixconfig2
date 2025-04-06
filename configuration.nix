@@ -59,6 +59,7 @@ in
 
   # enable flakes and stuff
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.trusted-users = [ "root" "@wheel" ];
   nixpkgs.config.allowUnfree = true;
 
   # Bootloader
@@ -69,12 +70,12 @@ in
   # boot.kernelPackages = pkgs.linuxPackages_6_12;
   # boot.loader.grub.useOSProber = true; # check if this works
 
-  # stuff for OBS
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+  # stuff for OBS + controllers?
+  hardware.xpadneo.enable = true;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback xpadneo];
   boot.kernelModules = [
     "v4l2loopback"
-    # "nvidia_uvm"
-]; # don't know if nvida uvm actually makes a difference
+];
   # boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
   security.polkit.enable = true;
   # hardware.opengl.enable = true;
@@ -412,6 +413,7 @@ in
     # ollama
 
     cargo
+    rustlings
 
     # zed-editor
     # myemacs
