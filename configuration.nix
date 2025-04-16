@@ -248,7 +248,7 @@ in
     };
 
     sessionVariables = rec {
-      NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
+      # NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
       XDG_CACHE_HOME  = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME   = "$HOME/.local/share";
@@ -337,6 +337,7 @@ in
       proggyfonts
       cozette
       luculent
+      pixel-code
     ];
     fontconfig= {
       enable = true;
@@ -348,11 +349,13 @@ in
     };
   };
 
+
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.josh = {
     isNormalUser = true;
     description = "Josh Martin";
-    extraGroups = ["networkmanager" "wheel" "audio" "video" "input"];
+    extraGroups = ["networkmanager" "wheel" "audio" "video" "input" "docker"];
     shell = pkgs.zsh;
 
 
@@ -377,6 +380,7 @@ in
     ];
   };
 
+  virtualisation.docker.enable = true; # remember to remove user from docker group if this is removed
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
