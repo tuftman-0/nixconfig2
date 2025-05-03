@@ -372,7 +372,7 @@ in
       # golly
       exercism
       tor-browser
-      protonvpn-gui
+      # protonvpn-gui
       qownnotes
       # mars-mips
       prusa-slicer
@@ -409,7 +409,7 @@ in
     adwaita-icon-theme
 
     kakoune
-    # kak-lsp
+    kak-lsp
     kak-tree-sitter-unwrapped
     bc
     jq
