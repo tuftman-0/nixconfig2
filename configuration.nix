@@ -403,6 +403,7 @@ in
     # pyright
     helix
 
+
     # fix dumb gsettings BS 
     glib
     dracula-theme
@@ -413,6 +414,10 @@ in
     kak-tree-sitter-unwrapped
     bc
     jq
+
+
+
+
     lsp-ai
     # ollama
 
@@ -460,6 +465,7 @@ in
     qbittorrent
 
     qdirstat # disk view utility
+    ncdu # disk usage analyzer
 
     # yuzu
     # citra
