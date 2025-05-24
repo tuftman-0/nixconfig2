@@ -396,7 +396,6 @@ in
     ripgrep
     nil
     nixd
-    nixfmt-rfc-style # nix formatter
     alejandra # nix formatter
     lua-language-server
     # zls
