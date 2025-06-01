@@ -373,7 +373,7 @@ in
       exercism
       tor-browser
       # protonvpn-gui
-      qownnotes
+      # qownnotes
       # mars-mips
       prusa-slicer
       # waydroid
