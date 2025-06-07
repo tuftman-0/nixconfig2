@@ -66,23 +66,26 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   # get latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   # boot.kernelPackages = pkgs.linuxPackages_6_12;
   # boot.loader.grub.useOSProber = true; # check if this works
 
   # stuff for OBS + controllers?
   hardware.xpadneo.enable = true;
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback xpadneo];
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    v4l2loopback
+    xpadneo
+];
   boot.kernelModules = [
     "v4l2loopback"
-];
+  ];
   # boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
   security.polkit.enable = true;
   # hardware.opengl.enable = true;
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      # nvidia-vaapi-driver # makes colors horrrible
+      # nvidia-vaapi-driver # makes colors horrrible (actually doesn't it's something else I think
       # libvdpau-va-gl
       # vaapiVdpau
     ];
