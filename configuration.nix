@@ -490,7 +490,7 @@ in
     # steam-run
     prismlauncher
 
-    # godotBin
+    godot
 
     # hyprland stuff
     hyprcursor
