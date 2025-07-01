@@ -425,6 +425,7 @@ in
 
     cargo
     rustlings
+    uv
 
     # zed-editor
     # myemacs
