@@ -28,7 +28,7 @@
           environment.systemPackages = [
             # ki-editor.packages.x86_64-linux.default
             stable.legacyPackages.x86_64-linux.bibata-cursors
-            stable.legacyPackages.x86_64-linux.jetbrains.idea-community
+            # stable.legacyPackages.x86_64-linux.jetbrains.idea-community
             # ghostty.packages.x86_64-linux.default
           ];
         }
