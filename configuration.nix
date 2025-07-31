@@ -436,6 +436,7 @@ in
     wget
     curl
     git
+    pijul
     lazygit
     yazi
     fd # for yazi
