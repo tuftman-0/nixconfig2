@@ -366,7 +366,7 @@ in
       firefox
       qutebrowser
       # jetbrains.idea-community
-      android-studio
+      # android-studio
       discord
       # discord-canary
       steam
