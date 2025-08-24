@@ -312,9 +312,9 @@ in
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    options = "--delete-older-than 20d";
   };
-  boot.loader.grub.configurationLimit = 30;
+  boot.loader.grub.configurationLimit = 20;
 
 
   # Enable touchpad support (enabled default in most desktopManager).
