@@ -438,7 +438,7 @@ in
     bc
     jq
 
-
+    smartcat
 
 
     lsp-ai
