@@ -383,7 +383,8 @@ in
 
 
     packages = with pkgs; [
-      firefox
+      # firefox
+      firefox-bin
       qutebrowser
       # jetbrains.idea-community
       # android-studio
