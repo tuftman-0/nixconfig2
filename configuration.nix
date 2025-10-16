@@ -444,6 +444,8 @@ in
     lsp-ai
     # ollama
 
+    qmk
+
     cargo
     rustlings
     uv
