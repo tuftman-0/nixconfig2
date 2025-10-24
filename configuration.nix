@@ -470,6 +470,9 @@ in
     unzip
     unrar
     xdragon
+    zathura
+    zathuraPkgs.zathura_pdf_mupdf
+    zathuraPkgs.zathura_cb
 
     hyperfine
 
