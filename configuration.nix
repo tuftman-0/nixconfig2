@@ -490,6 +490,7 @@ in
     pavucontrol
     helvum # audio interface
     imv # image viewer
+    swayimg # image viewer
     stow
     hstr
     qbittorrent
