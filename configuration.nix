@@ -473,6 +473,7 @@ in
     zathura
     zathuraPkgs.zathura_pdf_mupdf
     zathuraPkgs.zathura_cb
+    pdftk
 
     hyperfine
 
