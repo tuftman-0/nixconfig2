@@ -326,7 +326,7 @@ in
       iosevka
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       liberation_ttf
       fira-code
       fira-code-symbols
@@ -433,7 +433,7 @@ in
     adwaita-icon-theme
 
     kakoune
-    kak-lsp
+    kakoune-lsp
     kak-tree-sitter-unwrapped
     bc
     jq
@@ -469,7 +469,7 @@ in
     zip
     unzip
     unrar
-    xdragon
+    dragon-drop
     zathura
     zathuraPkgs.zathura_pdf_mupdf
     zathuraPkgs.zathura_cb
