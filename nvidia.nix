@@ -25,7 +25,8 @@
   # ollama
   services.ollama = {
     enable = true;
-    acceleration = "cuda";
+    package = pkgs.ollama-cuda;
+    # acceleration = "cuda"; # old
   };
 
   # Load nvidia driver for Xorg and Wayland
