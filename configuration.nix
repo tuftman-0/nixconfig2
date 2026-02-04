@@ -441,7 +441,7 @@ in
     smartcat
 
 
-    lsp-ai
+    # lsp-ai
     # ollama
 
     qmk
