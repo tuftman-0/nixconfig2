@@ -489,7 +489,6 @@ in
     cmatrix # Take The Purple Pill
     fuzzel # app launcher
     pavucontrol
-    helvum # audio interface
     imv # image viewer
     swayimg # image viewer
     stow
