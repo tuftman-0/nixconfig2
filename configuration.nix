@@ -105,8 +105,31 @@ in
   security.pam.services.sddm.enableGnomeKeyring = true;
   services.gnome.gnome-keyring.enable = true;
 
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true;
+  # hardware.bluetooth.enable = true; # enables support for Bluetooth
+  # hardware.bluetooth.powerOnBoot = true;
+
+  # services.udev.extraRules = ''
+  # # PS5 DualSense controller over USB hidraw
+  # KERNEL=="hidraw*", KERNELS=="*054C:0CE6*", MODE="0660", TAG+="uaccess"
+  # KERNEL=="hidraw*", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0ce6", MODE="0660", TAG+="uaccess"
+  # # Steam Controller udev write access
+  # KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"
+  # '';
+
+  hardware.uinput.enable = true;
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+        AutoEnable = true;
+        ControllerMode = "bredr";
+      };
+    };
+  };
   services.blueman.enable = true;
  
   # Set your time zone.
