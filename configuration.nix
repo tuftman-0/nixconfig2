@@ -459,6 +459,7 @@ in
     wget
     curl
     git
+    jujutsu
     pijul
     lazygit
     yazi
