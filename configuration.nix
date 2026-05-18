@@ -507,7 +507,7 @@ in
     zoxide
     fzf # not sure if I need this
     alacritty # terminal
-    # ueberzugpp
+    ueberzugpp
     ghostty
     wezterm
     cmatrix # Take The Purple Pill
