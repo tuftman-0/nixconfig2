@@ -551,7 +551,7 @@ in
     hyprlock
     hyprpicker
     nwg-look # for selecting cursors and stuff
-    # bibata-cursors
+    bibata-cursors
     waybar
     dunst
     networkmanagerapplet

@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    stable.url = "github:nixos/nixpkgs?ref=nixos-23.11";
-    ki-editor.url = "github:ki-editor/ki-editor";
+    # stable.url = "github:nixos/nixpkgs?ref=nixos-23.11";
+    # ki-editor.url = "github:ki-editor/ki-editor";
     # ghostty = {
     #   url = "git+ssh://git@github.com/ghostty-org/ghostty";
     #   inputs.nixpkgs-stable.follows = "nixpkgs";
@@ -15,8 +15,8 @@
   outputs = {
     self,
     nixpkgs,
-    stable,
-    ki-editor,
+    # stable,
+    # ki-editor,
     # ghostty,
     ...
   }: {
@@ -27,7 +27,7 @@
         {
           environment.systemPackages = [
             # ki-editor.packages.x86_64-linux.default
-            stable.legacyPackages.x86_64-linux.bibata-cursors
+            # stable.legacyPackages.x86_64-linux.bibata-cursors
             # stable.legacyPackages.x86_64-linux.jetbrains.idea-community
             # ghostty.packages.x86_64-linux.default
           ];
