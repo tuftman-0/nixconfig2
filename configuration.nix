@@ -560,7 +560,7 @@ in
     wl-clipboard
     libnotify
     brightnessctl
-    swww #screenshare
+    awww #screenshare
     cups-pdf-to-pdf # print to pdf utility?
 
     # obs-studio
