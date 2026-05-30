@@ -479,6 +479,7 @@ in
     # coreutils already installed somehow
     vis
 
+    tree
     wget
     curl
     git
