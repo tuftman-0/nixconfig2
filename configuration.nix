@@ -408,6 +408,7 @@ in
     packages = with pkgs; [
       # firefox
       firefox-bin
+      chromium
       qutebrowser
       # jetbrains.idea-community
       # android-studio
